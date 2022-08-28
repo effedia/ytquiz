@@ -2,7 +2,7 @@ html {
 	background-color: #DEB887;
 }
 body {
-	margin: 2em 18em;
+	margin: 1.8em 18em;
 	padding: 1em;
 	text-align: center;
 	line-height: 1.3em;
@@ -82,6 +82,7 @@ input[type=radio] {
 }
 #tooltip {
 	position: relative;
+	text-align: center;
 }
 #tooltiptext {
 	visibility: hidden;
