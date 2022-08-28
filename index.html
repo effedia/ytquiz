@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title>YT Quiz</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://www.youtube.com/iframe_api"></script>
+		<script src="script.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter">
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1>YouTube Quiz</h1>
+		<div id="mb">
+			<p>Inserire l'<b>ID</b> di una playlist, impostare la <b>difficoltà</b> (neofita = facile, necrofilo = difficile) e il numero di <b>turni</b> (da 3 a 50).</p>
+			<p>La <b>risposta</b> viene considerata <b>corretta</b> solo se il titolo è <b>identico</b> a quello del video su YouTube. Il sistema <b>suggerirà</b> il titolo esatto e basterà cliccarci sopra per selezionarlo.</p>
+			<h2 id="moretitle" onclick="piuinfo()">Altre informazioni ▼</h2>
+			<div id="morebox">
+				<p><b>Dove si trova l'ID di una playlist?</b><br/>Per fare un esempio, questo è il link completo di una playlist: <a href="https://www.youtube.com/playlist?list=PLNGWYMHA3QtyGXRCB9-8-LVmRcN4dJwCj" target="_blank">https://www.youtube.com/playlist?list=PLNGWYMHA3QtyGXRCB9-8-LVmRcN4dJwCj</a><br/>La parte finale del link è l'ID, ovvero: PLNGWYMHA3QtyGXRCB9-8-LVmRcN4dJwCj</p>
+				<p><b>Come giocare con una lista di canzoni personalizzata?</b><br/>Bisogna creare una playlist su YouTube con le canzoni e impostarla come "pubblica" o "non in elenco". Dopodiché si deve copia-incollare l'ID della playlist nel box "ID playlist" qui sotto.<br/>Per condividere con altri il gioco con già impostata la playlist scelta, basta cliccare sul bottone "Copia il link del gioco con questa playlist" per copiare il link da inviare.</p>
+				<p><b>Per chi usa Chrome da PC...</b><br/>È consigliabile disattivare l'opzione <b>Hardware Media Key Handling</b> nelle opzioni del browser, per evitare che appaia il titolo del video mentre si regola il volume. Per farlo, copia-incollare questo link nella barra degli indirizzi e disattivare la prima opzione che appare: <tt>chrome://flags/#hardware-media-key-handling</tt></p>
+			</div>
+			<form>
+				<label for="pl">ID playlist:</label>
+				<br/>
+				<input type="text" id="pl"/>
+				<div id="tooltip">
+					<button type="button" onclick="copia($('#pl').val())">
+						<span id="tooltiptext">Copiato!</span>
+						🔗 Copia il link del gioco con questa playlist 🔗
+					</button>
+				</div>
+				<label>Difficoltà:</label>
+				<div id="diff">
+					<label for="ss1" class="rd">
+						<input type="radio" id="ss1" name="ss" value="3900"/>
+						Neofita
+					</label>
+					<label for="ss2" class="rd">
+						<input type="radio" id="ss2" name="ss" value="2400"/>
+						Estimatore
+					</label>
+					<label for="ss3" class="rd">
+						<input type="radio" id="ss3" name="ss" value="1400" checked="checked"/>
+						Fan
+					</label>
+					<label for="ss4" class="rd">
+						<input type="radio" id="ss4" name="ss" value="800"/>
+						Nerd
+					</label>
+					<label for="ss5" class="rd">
+						<input type="radio" id="ss5" name="ss" value="500"/>
+						Necrofilo
+					</label>
+				</div>
+				<label for="rt">Turni:</label>
+				<br/>
+				<input type="number" id="rt" value="10" min="3" max="50"/>
+				<br/>
+				<button type="button" onclick="gioca()">Gioca!</button>
+				<p id="wn"></p>
+			</form>
+		</div>
+	</body>
+</html>
